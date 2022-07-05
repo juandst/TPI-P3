@@ -3,9 +3,9 @@ using TP_Programación_III.Enums;
 
 namespace TP_Programación_III.Models
 {
-    public class ProductDTO
+    public class Product
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         [MaxLength(50)]
         public string Name { get; set; }

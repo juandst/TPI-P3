@@ -10,18 +10,11 @@ namespace TP_Programación_III.Controllers
     public class ProductsController : ControllerBase
     {
 
-        private readonly ProductsData _productsData;
-
-        public ProductsController(ProductsData productsData)
-        {
-            _productsData = productsData;
-        }
 
         [HttpGet]
 
-        public ActionResult<IEnumerable<ProductDTO>> GetProducts()
+        public ActionResult<IEnumerable<Product>> GetProducts()
         {
-            return Ok(_productsData.Products);
         }
 
     }
