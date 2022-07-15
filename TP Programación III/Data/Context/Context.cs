@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TP_Programación_III.Models;
+using TP_Programación_III.Entities;
 
 namespace TP_Programación_III.Data.Context
 {
@@ -8,7 +8,7 @@ namespace TP_Programación_III.Data.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public Context(DbContextOptions<Context> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
+        public Context(DbContextOptions<Context> options) : base(options)
         {
 
         }
@@ -45,7 +45,7 @@ namespace TP_Programación_III.Data.Context
                 }
                 );
 
-            modelBuilder.Entity<Product>().HasData(
+            modelBuilder.Entity<User>().HasData(
                 new User
                 {
                     UserID = 1,
