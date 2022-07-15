@@ -1,6 +1,6 @@
 ﻿namespace TP_Programación_III.Models
 {
-    public class User
+    public class UserDTO
     {
         public int UserID { get; set; }
         public string Name { get; set; }

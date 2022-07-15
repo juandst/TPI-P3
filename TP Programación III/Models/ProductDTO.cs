@@ -3,7 +3,7 @@ using TP_Programación_III.Enums;
 
 namespace TP_Programación_III.Models
 {
-    public class Product
+    public class ProductDTO
     {
         public int ID { get; set; }
 
