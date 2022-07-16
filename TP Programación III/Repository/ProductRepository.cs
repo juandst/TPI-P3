@@ -1,7 +1,7 @@
 ﻿using TP_Programación_III.Data.Context;
 using TP_Programación_III.Entities;
 
-namespace TP_Programación_III.Services
+namespace TP_Programación_III.Repository
 {
     public class ProductRepository : IProductRepository
     {
@@ -14,10 +14,15 @@ namespace TP_Programación_III.Services
         {
             return _context.Products.Where(p => p.ID == id).FirstOrDefault();
         }
-
-        public Product GetProductByName(string name)
+        public IEnumerable<Product> GetProductsOnSale()
         {
-            throw new NotImplementedException();
+            return _context.Products.Where(p => p.OnSale).ToList();
+        }
+
+        public IEnumerable<Product> GetProductByName(string name)
+        {
+            name = name.ToLower();
+            return _context.Products.Where(p => p.Name.ToLower().Contains(name)).ToList();
         }
 
         public IEnumerable<Product> GetProducts()
