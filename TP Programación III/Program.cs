@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TP_Programación_III.Data.Context;
-using TP_Programación_III.Services;
+using TP_Programación_III.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,7 @@ builder.Services.AddDbContext<Context>(dbContextOptions => dbContextOptions.UseS
     builder.Configuration["ConnectionStrings:ContextDBConnectionString"]
     ));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
