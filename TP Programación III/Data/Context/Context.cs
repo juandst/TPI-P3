@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TP_Programación_III.Entities;
+using TP_Programación_III.Enums;
 
 namespace TP_Programación_III.Data.Context
 {
@@ -21,7 +22,7 @@ namespace TP_Programación_III.Data.Context
                     ID = 1,
                     Name = "Eukanuba Puppy x15",
                     Description = "Eukanuba Puppy es un producto ideal para mascotas menores al año de edad y entre 11 y 25 Kg. Considerado un alimento super premium, es de lo mejor que hay en el mercado",
-                    ProductCategory = Enums.Category.AlimentoPerros,
+                    ProductCategory = Category.AlimentoPerros,
                     Price = 14600,
                     OnSale = false,
                 },
@@ -30,7 +31,7 @@ namespace TP_Programación_III.Data.Context
                     ID = 2,
                     Name = "Proplan Adult x3",
                     Description = "Proplan Adult es un producto ideal para mascotas mayores al año y con un peso menor a 10 kg. Considerado un alimento super premium, es de lo mejor que hay en el mercado",
-                    ProductCategory = Enums.Category.AlimentoPerros,
+                    ProductCategory = Category.AlimentoPerros,
                     Price = 4900,
                     OnSale = false,
                 },
@@ -39,7 +40,7 @@ namespace TP_Programación_III.Data.Context
                     ID = 3,
                     Name = "Raza Adult x20",
                     Description = "Raza Adultos es un alimento masivo para perros adultos",
-                    ProductCategory = Enums.Category.AlimentoPerros,
+                    ProductCategory = Category.AlimentoPerros,
                     Price = 8100,
                     OnSale = true,
                 }
