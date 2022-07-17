@@ -8,6 +8,7 @@ namespace TP_Programación_III.Data.Context
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
@@ -24,7 +25,7 @@ namespace TP_Programación_III.Data.Context
                     Description = "Eukanuba Puppy es un producto ideal para mascotas menores al año de edad y entre 11 y 25 Kg. Considerado un alimento super premium, es de lo mejor que hay en el mercado",
                     ProductCategory = Category.AlimentoPerros,
                     Price = 14600,
-                    OnSale = false,
+                    HasDiscount = false,
                 },
                 new Product
                 {
@@ -33,7 +34,7 @@ namespace TP_Programación_III.Data.Context
                     Description = "Proplan Adult es un producto ideal para mascotas mayores al año y con un peso menor a 10 kg. Considerado un alimento super premium, es de lo mejor que hay en el mercado",
                     ProductCategory = Category.AlimentoPerros,
                     Price = 4900,
-                    OnSale = false,
+                    HasDiscount = false,
                 },
                 new Product
                 {
@@ -42,7 +43,7 @@ namespace TP_Programación_III.Data.Context
                     Description = "Raza Adultos es un alimento masivo para perros adultos",
                     ProductCategory = Category.AlimentoPerros,
                     Price = 8100,
-                    OnSale = true,
+                    HasDiscount = true,
                 }
                 );
 
@@ -70,6 +71,18 @@ namespace TP_Programación_III.Data.Context
                     Email = "carlos@email.com",
                     Password = "123456",
                     IsAdmin = false,
+                }
+                );
+
+            modelBuilder.Entity<Sale>().HasData(
+                new Sale
+                {
+                    ID = 4,
+                    PaymentType = PaymentType.CreditCard,
+                    ShippingPlace = "Formosa",
+                    Name = "Vitalcan Complete x20",
+                    ProductCategory = Category.AlimentoPerros,
+                    Price = 9500,
                 }
                 );
 
