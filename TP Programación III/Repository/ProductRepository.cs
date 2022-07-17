@@ -16,7 +16,7 @@ namespace TP_Programación_III.Repository
         }
         public IEnumerable<Product> GetProductsOnSale()
         {
-            return _context.Products.Where(p => p.OnSale).ToList();
+            return _context.Products.Where(p => p.HasDiscount).ToList();
         }
 
         public IEnumerable<Product> GetProductByName(string name)
