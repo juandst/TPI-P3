@@ -17,7 +17,7 @@ namespace TP_Programación_III.Models
 
         public int Price { get; set; }
 
-        public bool OnSale { get; set; }
+        public bool HasDiscount { get; set; }
 
 
     }
