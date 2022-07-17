@@ -2,9 +2,9 @@
 {
     public enum Category
     {
-        Accesorios,
-        AlimentoPerros,
-        AlimentoGatos,
-        Indumentaria,
+        Accesorios, // 0
+        AlimentoPerros, // 1
+        AlimentoGatos, // 2
+        Indumentaria, // 3
     }
 }
