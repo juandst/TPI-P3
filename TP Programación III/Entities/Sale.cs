@@ -4,23 +4,18 @@ using TP_Programación_III.Enums;
 
 namespace TP_Programación_III.Entities
 {
-    public class Product
+    public class Sale
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
-
-        [MaxLength(50)]
+        public PaymentType PaymentType { get; set; }
+        public string ShippingPlace { get; set; }
         [Required]
         public string Name { get; set; }
-
-        [MaxLength(300)]
-        public string Description { get; set; }
-
         public Category ProductCategory { get; set; }
-
+        [Required]
         public int Price { get; set; }
 
-        public bool HasDiscount { get; set; }
     }
 }
