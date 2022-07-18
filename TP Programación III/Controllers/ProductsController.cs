@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TP_Programación_III.Data;
+using TP_Programación_III.Entities;
 using TP_Programación_III.Models;
+using TP_Programación_III.Models.Create;
+using TP_Programación_III.Models.Update;
 using TP_Programación_III.Repository;
 
 namespace TP_Programación_III.Controllers
@@ -19,7 +22,7 @@ namespace TP_Programación_III.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetProducts")]
 
         public ActionResult<IEnumerable<ProductDTO>> GetProducts()
         {
@@ -28,7 +31,7 @@ namespace TP_Programación_III.Controllers
         }
 
         [HttpGet("{idProduct}")]
-        
+
         public ActionResult<ProductDTO> GetProductById(int idProduct)
         {
             var product = _repository.GetProductById(idProduct);
@@ -50,6 +53,46 @@ namespace TP_Programación_III.Controllers
             var products = _repository.GetProductByName(name);
             if (products == null) return NotFound();
             return Ok(_mapper.Map<IEnumerable<ProductDTO>>(products));
-    }
+        }
+
+        [HttpPost]
+
+        public ActionResult<ProductDTO> AddProduct(ProductCreateDTO productToCreate)
+        {
+            Product newProduct = _mapper.Map<Product>(productToCreate);
+            _repository.AddProduct(newProduct);
+            _repository.SaveChangesBool();
+
+            return CreatedAtRoute("GetProducts",
+                new
+                {
+                    productId = newProduct.ID
+                },
+                _mapper.Map<ProductDTO>(newProduct));
+        }
+
+        [HttpPut("{productId}")]
+        
+        public ActionResult UpdateProduct(int productId, ProductUpdateDTO productUpdated)
+        {
+            var productToUpdate = _repository.GetProductById(productId);
+            if (productToUpdate == null) return NotFound();
+            _mapper.Map(productUpdated, productToUpdate);
+            _repository.SaveChangesBool();
+            return NoContent();
+        }
+
+        [HttpDelete("{productId}")]
+
+        public ActionResult DeleteProduct(int productId)
+        {
+            var productToDelete = _repository.GetProductById(productId);
+            if (productToDelete == null) return NotFound();
+            _repository.DeleteProduct(productToDelete);
+
+            _repository.SaveChangesBool();
+
+            return NoContent();
+        }
     }
 }
