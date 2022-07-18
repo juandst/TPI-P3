@@ -29,5 +29,20 @@ namespace TP_Programación_III.Repository
         {
             return _context.Products.OrderBy(p => p.Name).ToList(); 
         }
+
+        public void AddProduct(Product product)
+        {
+            _context.Products.Add(product);
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            _context.Products.Remove(product);
+        }
+
+        public bool SaveChangesBool()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
     }
 }
