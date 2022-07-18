@@ -8,5 +8,9 @@ namespace TP_Programación_III.Repository
         public Product GetProductById(int id);
         public IEnumerable<Product> GetProductByName(string name);
         public IEnumerable<Product> GetProductsOnSale();
+
+        public void AddProduct(Product product);
+        public bool SaveChangesBool();
+        public void DeleteProduct(Product product);
     }
 }
