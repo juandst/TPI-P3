@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TP_Programación_III.Data;
@@ -11,6 +12,7 @@ using TP_Programación_III.Repository;
 namespace TP_Programación_III.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]/[action]")]
     public class ProductsController : ControllerBase
     {
