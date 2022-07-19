@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TP_Programación_III.Data;
 using TP_Programación_III.Entities;
 using TP_Programación_III.Models;
@@ -12,7 +13,6 @@ using TP_Programación_III.Repository;
 namespace TP_Programación_III.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]/[action]")]
     public class ProductsController : ControllerBase
     {
@@ -33,7 +33,6 @@ namespace TP_Programación_III.Controllers
         }
 
         [HttpGet("{idProduct}")]
-
         public ActionResult<ProductDTO> GetProductById(int idProduct)
         {
             var product = _repository.GetProductById(idProduct);
@@ -58,9 +57,10 @@ namespace TP_Programación_III.Controllers
         }
 
         [HttpPost]
-
         public ActionResult<ProductDTO> AddProduct(ProductCreateDTO productToCreate)
         {
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            if (userRole != "admin") return Forbid();
             Product newProduct = _mapper.Map<Product>(productToCreate);
             _repository.AddProduct(newProduct);
             _repository.SaveChangesBool();
@@ -77,6 +77,8 @@ namespace TP_Programación_III.Controllers
         
         public ActionResult UpdateProduct(int productId, ProductUpdateDTO productUpdated)
         {
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            if (userRole != "admin") return Forbid();
             var productToUpdate = _repository.GetProductById(productId);
             if (productToUpdate == null) return NotFound();
             _mapper.Map(productUpdated, productToUpdate);
@@ -88,6 +90,8 @@ namespace TP_Programación_III.Controllers
 
         public ActionResult DeleteProduct(int productId)
         {
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            if (userRole != "admin") return Forbid();
             var productToDelete = _repository.GetProductById(productId);
             if (productToDelete == null) return NotFound();
             _repository.DeleteProduct(productToDelete);
