@@ -18,5 +18,15 @@ namespace TP_Programación_III.Repository
             var user = _context.Users.FirstOrDefault(a => a.Email == request.Email && a.Password == request.Password);
             return user;
         }
+
+        public void AddUser(User user)
+        {
+            _context.Users.Add(user);
+        }
+
+        public bool SaveChangesBool()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
     }
 }
